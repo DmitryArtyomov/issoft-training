@@ -6,10 +6,13 @@ RSpec.describe Map do
     context "for #{moves}" do
       subject(:map) { described_class.new }
 
-      it 'moves to coords' do
+      before do
         moves.map { |raw_move| Move.new(raw_move) }.each do |move|
           map.apply(move)
         end
+      end
+
+      it 'moves to coords' do
         expect(map.coords.x).to eq(exp_x)
         expect(map.coords.y).to eq(exp_y)
       end
@@ -23,8 +26,9 @@ RSpec.describe Map do
   describe '#distance' do
     subject(:map) { described_class.new }
 
+    before { map.go }
+
     it 'walks through the path' do
-      map.go
       expect(map.distance).to eq(231)
     end
   end
@@ -32,8 +36,9 @@ RSpec.describe Map do
   describe '#first_crossing' do
     subject(:map) { described_class.new }
 
+    before { map.go }
+
     it 'finds distance to first crossing' do
-      map.go
       expect(map.first_crossing).to eq(147)
     end
   end

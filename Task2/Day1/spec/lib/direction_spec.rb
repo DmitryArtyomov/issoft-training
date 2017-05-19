@@ -31,11 +31,13 @@ RSpec.describe Direction do
       context "for #{dir}" do
         subject(:direction) { dir }
 
-        axis_direction = value.positive? ? 'positive' : 'negative'
+        let(:axis_direction) { value.positive? ? 'positive' : 'negative' }
+        let(:coeff) { direction.coeff}
+
         it "moves #{value.abs} step(s) on #{axis.to_s.upcase} axis in " \
           "#{axis_direction} direction" do
-          expect(direction.coeff.axis).to eq(axis)
-          expect(direction.coeff.value).to eq(value)
+          expect(coeff.value).to eq(value)
+          expect(coeff.axis).to eq(axis)
         end
       end
     end

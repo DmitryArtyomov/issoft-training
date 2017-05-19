@@ -17,13 +17,11 @@ RSpec.describe Coords do
       end
     end
 
-    shared_examples 'moving both axis' do |axis1:, steps1:, axis2:, steps2:,
-        exp_x:, exp_y:|
+    shared_examples 'moving both axis' do |axis1:, steps1:, axis2:, steps2:, exp_x:, exp_y:|
       context "moving on both axis" do
         subject(:coords) { described_class.new(0, 0) }
 
-        it "moves #{steps1} on #{axis1.to_s.upcase} and " \
-          "#{steps2} on #{axis2.to_s.upcase}" do
+        it "moves #{steps1} on #{axis1.to_s.upcase} and #{steps2} on #{axis2.to_s.upcase}" do
           c = coords.move(axis1, steps1).move(axis2, steps2)
           expect(c.x).to eq(exp_x)
           expect(c.y).to eq(exp_y)
@@ -36,10 +34,8 @@ RSpec.describe Coords do
     include_examples 'moving one axis', axis: :y, steps: 5, exp_x: 0, exp_y: 5
     include_examples 'moving one axis', axis: :y, steps: -10, exp_x: 0, exp_y: -10
 
-    include_examples 'moving both axis', axis1: :x, steps1: 100, axis2: :y,
-      steps2: 100, exp_x: 100, exp_y: 100
-    include_examples 'moving both axis', axis1: :y, steps1: -10, axis2: :x,
-      steps2: 5, exp_x: 5, exp_y: -10
+    include_examples 'moving both axis', axis1: :x, steps1: 100, axis2: :y, steps2: 100, exp_x: 100, exp_y: 100
+    include_examples 'moving both axis', axis1: :y, steps1: -10, axis2: :x, steps2: 5, exp_x: 5, exp_y: -10
   end
 
   describe '#distance_to' do

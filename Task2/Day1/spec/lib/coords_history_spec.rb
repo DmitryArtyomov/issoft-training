@@ -13,13 +13,17 @@ RSpec.describe CoordsHistory do
     end
 
     context 'consecutive adding' do
+      let(:c1) { Coords.new(1, 1) }
+      let(:c2) { Coords.new(5, 10) }
+
+      before { coords_history.add(c1).add(c2) }
+
+      let(:history) { coords_history.history }
+
       it 'contains all added elements' do
-        c1 = Coords.new(1, 1)
-        c2 = Coords.new(5, 10)
-        h = coords_history.add(c1).add(c2).history
-        expect(h.include?(c1)).to eq(true)
-        expect(h.include?(c2)).to eq(true)
-        expect(h.index(c2) - h.index(c1)).to eq(1)
+        expect(history.include?(c1)).to eq(true)
+        expect(history.include?(c2)).to eq(true)
+        expect(history.index(c2) - h.index(c1)).to eq(1)
       end
     end
   end

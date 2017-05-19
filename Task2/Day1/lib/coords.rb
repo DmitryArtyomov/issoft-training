@@ -5,7 +5,7 @@ class Coords < Struct.new(:x, :y)
   end
 
   def move(axis, value)
-    self.send("#{axis}=", self.send(axis).send(:+, value))
+    send("#{axis}=", send(axis).send(:+, value))
     self
   end
 

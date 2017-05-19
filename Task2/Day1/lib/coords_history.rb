@@ -11,8 +11,8 @@ class CoordsHistory
 
   def add(coords)
     c = coords.dup
-    @history.push(c)
-    (@visited[c] ||= []) << @history.length - 1
+    history.push(c)
+    (@visited[c] ||= []) << history.length - 1
     self
   end
 

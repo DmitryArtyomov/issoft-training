@@ -21,20 +21,20 @@ class Map
     end
   end
 
-  def apply(move)
-    @curr_direction = @curr_direction.send(move.turn)
+  def apply(move) 
+    curr_direction = curr_direction.send(move.turn)
     move.distance.times do
-      coeff = @curr_direction.coeff
-      @coords.move(coeff.axis, coeff.value)
-      @history.add(@coords)
+      coeff = curr_direction.coeff
+      coords.move(coeff.axis, coeff.value)
+      history.add(coords)
     end
   end
 
   def first_crossing
-    @history.first_crossing.distance_to(@starting_coords)
+    history.first_crossing.distance_to(starting_coords)
   end
 
   def distance
-    @coords.distance_to(@starting_coords)
+    coords.distance_to(starting_coords)
   end
 end
